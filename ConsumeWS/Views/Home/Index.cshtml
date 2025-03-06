@@ -3,86 +3,89 @@
 }
 
 <div class="jumbotron">
-    <h1>Quieres un descuento extra</h1>
-    <h3>Dejanos tu informacion y opten el cupon de descuento.</h3>
+    <h1>¿Quieres información valiosa y personalizada?</h1>
+    <h3>Dejanos tu información y opten un cupón de descuento.</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre">
+            </div>
+            <div class="form-group">
+                <label for="apaterno">Apellido paterno:</label>
+                <input type="text" class="form-control" id="apaterno">
+            </div>
+            <div class="form-group">
+                <label for="amaterno">Apellido materno:</label>
+                <input type="text" class="form-control" id="amaterno">
+            </div>
+        </div>   
+        <div class="col-md-3">
 
-    <div class="col-lg-10">
-         
-        <div class="CPostal">
-            <label>Codigo Postal</label>
-            @Html.TextBox("Codigo Postal",null,new { @class = "codigo-postal form-control" , placeholder ="Ingresa tu codigo postal a 5 digitos"})
+            <div class="form-group">
+                <label for="telefono">Telefono:</label>
+                <input type="tel" class="form-control" id="telefono">
+            </div>
+          
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="dropdown">
+                <div class="CPostal">
+                    <label>Codigo Postal</label>
+                    @Html.TextBox("Codigo Postal", null, new { @class = "codigo-postal form-control", placeholder = "Ingresa tu codigo postal a 5 digitos" })
+                </div>
+                <div>
+                    <select class="select-colonia dropdown-menu" name="colonias" style="display:none;"></select>
+                </div>
+            </div>
+            <br />
+            
         </div>
 
-        <div class="select-colonia">
-
+        <div class="col-md-12" >
+            <button class="btn btn-success descuento" style="display:none;">Quiero mi descuento</button>
         </div>
-
-        <button class="btn btn-default">Enviar Información</button>
     </div>
-
     
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
 </div>
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
     $(document).ready(function () {
         $(".codigo-postal").on("input", function () {
-            debugger;
             let cPostal = $(this).val();
             
-            // Solo ejecutar AJAX si tiene 5 dígitos
-            if (cPostal.length === 5 && typeof( Number(cPostal) ) === "number") {
-                debugger;
+            if (cPostal.length === 5 && typeof (Number(cPostal)) === "number") {
+                $(".descuento").show();
                 $.ajax({
                     url: "http://localhost:44316/api/Persona",
                     type: "POST",
                     contentType: "application/json",
-                    data: JSON.stringify(Number(cPostal)),
+                    data: JSON.stringify({ CodigoPostal: Number(cPostal) }),
                     success: function (response) {
-                        console.log(response.data);
-                        debugger;
                         let colonias = $(".select-colonia");
                         colonias.empty();
-                        colonias.append('<option value="">Seleccione una colonia</option>');
-                        /*
-                        if (response.postalcodes && response.postalcodes.length > 0) {
-                            response.postalcodes.forEach(function (item) {
-                                colonias.append(`<option value="${item.placeName}">${item.placeName}</option>`);
+                        colonias.show();
+                        if (response.length > 0) {
+                            colonias.append(' <option value="">Seleccione una colonia</option>');
+                            response.forEach(function (item) {
+                                colonias.append(`<option value="${item.Id}">${item.DescripcionColonia}</option>`);
                             });
                         } else {
                             colonias.append('<option value="">No hay resultados</option>');
                         }
-                        */
                     },
                     error: function (xhr, status, error) {
-                        debugger;
-                        console.error("Error en la petición:", xhr.status, error);
-                        console.error("Respuesta del servidor:", xhr.responseText);
-                        alert("Error al obtener datos: " + xhr.responseText);
+                        Console.log("Error al obtener datos: " + xhr.responseText);
                     }
                 });
+            } else {
+                $(".descuento").hide();
             }
         });
     });

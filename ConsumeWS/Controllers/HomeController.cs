@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsumeWS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,25 +12,19 @@ namespace ConsumeWS.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        }       
 
-        public ActionResult About()
+        public ActionResult Speech() 
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.Message = "Asesor ";
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Speech(MPersonaClientes cliente)
         {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-
-        public ActionResult Informes() 
-        {
-            ViewBag.Message = "!Bienvenido, dejanos tus contactos y nosotros te llamamos!";
+            ViewBag.Message = "Asesor ";
             return View();
         }
     }

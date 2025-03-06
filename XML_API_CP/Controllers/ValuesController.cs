@@ -6,20 +6,37 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using XML_API_CP.Models;
+using XML_API_CP.Utils;
 
 namespace XML_API_CP.Controllers
 {
-    //[EnableCors(origins: "http://localhost:44325",headers:"*",  methods:"*")]
+   
     public class ValuesController : ApiController
     {
         // GET api/values          
-
         [HttpPost]
         [Route("api/Persona")]
-        public bool SearchByZipCode([FromBody] int CodigoPostal) 
+        public IHttpActionResult SearchByZipCode([FromBody] MXmlBody body) 
         {
-            int numero = 15;
-            return true;
+
+            if (body.CodigoPostal == 0 )
+            {
+                return BadRequest("El código postal es requerido.");
+            }
+
+            int codigoPostal;
+            if (!int.TryParse(body.CodigoPostal.ToString(), out codigoPostal))
+            {
+                return BadRequest("El código postal debe ser un número válido.");
+            }
+
+            List<MColoniaL> LColonias = CiudadesService.GetCities(codigoPostal);
+            if (LColonias == null || !LColonias.Any())
+                return NotFound();
+
+
+            return Ok(LColonias);
         }
 
     }

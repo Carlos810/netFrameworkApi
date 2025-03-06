@@ -1,0 +1,62 @@
+﻿@model ConsumeWS.Models.MPersonaClientes
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guía para Asesor de Seguros</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+            .card:hover {
+                transform: scale(1.02);
+            }
+
+        .highlight {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card p-4">
+                    <h2 class="mb-4">Guía de Contacto</h2>
+                    <p><strong>Cliente:</strong> <span class="highlight" id="clienteNombre">@Model.Nombre @Model.APaterno @Model.AMaterno</span></p>
+                    <p><strong>Email:</strong> <span class="highlight" id="clienteEmail">@Model.Email</span></p>
+                    <p><strong>Teléfono:</strong> <span class="highlight" id="clienteTelefono">@Model.NumeroTelefono</span></p>
+                    <p class="mt-3">
+                        Hola <span class="highlight" id="clienteNombre2">@Model.Nombre @Model.APaterno @Model.AMaterno</span>,
+                        soy <strong>[Nombre Asesor]</strong>, asesor de seguros.
+                        Me gustaría hablar contigo sobre una excelente opción de seguro de vida que tenemos disponible en tu área.
+                    </p>
+                    <p class="mt-3">
+                        Con base en tu código postal, tenemos una oferta especial desde <strong class="highlight" id="precioSeguro">$[Precio]</strong> al mes.
+                        ¿Podríamos coordinar una breve llamada para discutir más detalles?
+                    </p>
+                    <button class="btn btn-primary mt-3" onclick="alert('Llamando a ' + document.getElementById('clienteTelefono').textContent)">Llamar Ahora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

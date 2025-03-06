@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34407.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumeWS", "ConsumeWS\ConsumeWS.csproj", "{916AC1BC-B46C-476A-BEFE-EAA73D7257B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML_API_CP", "XML_API_CP\XML_API_CP.csproj", "{23105884-FC3E-42EF-93E3-B2415B18CEDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{916AC1BC-B46C-476A-BEFE-EAA73D7257B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{916AC1BC-B46C-476A-BEFE-EAA73D7257B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{916AC1BC-B46C-476A-BEFE-EAA73D7257B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{916AC1BC-B46C-476A-BEFE-EAA73D7257B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23105884-FC3E-42EF-93E3-B2415B18CEDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23105884-FC3E-42EF-93E3-B2415B18CEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23105884-FC3E-42EF-93E3-B2415B18CEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23105884-FC3E-42EF-93E3-B2415B18CEDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A802FDC-615A-406F-B5B6-FA27B66094CF}
+	EndGlobalSection
+EndGlobal
